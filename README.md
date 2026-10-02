@@ -1,2 +1,2 @@
-# livekit-tasks
-Building  a CityCare Clinic Voice AI Agent using LiveKit
+# citycare-voice-agent
+build a CityCare Clinic Voice AI Agent using LiveKit

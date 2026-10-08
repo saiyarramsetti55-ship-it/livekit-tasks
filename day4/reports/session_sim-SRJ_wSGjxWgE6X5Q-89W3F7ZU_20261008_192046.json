@@ -1,0 +1,268 @@
+{
+  "job_id": "AJ_k2pEheyXcZxX",
+  "room_id": "RM_vqQAAPgyhBsg",
+  "room": "sim-SRJ_wSGjxWgE6X5Q-89W3F7ZU",
+  "events": [
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_8087885cc9b3",
+        "type": "agent_handoff",
+        "old_agent_id": null,
+        "new_agent_id": "reception_agent",
+        "created_at": 1791467375.2967422
+      },
+      "created_at": 1791467375.2967422
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467375.3209112
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "initializing",
+      "new_state": "thinking",
+      "created_at": 1791467375.9745488
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "listening",
+      "created_at": 1791467377.8641791
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467384.5329702
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_fed0d8ca45c0",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "I am really frustrated. I need to cancel my appointment."
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467384.5329702,
+        "hash": null
+      },
+      "created_at": 1791467384.543242
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "listening",
+      "new_state": "thinking",
+      "created_at": 1791467384.5438108
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_started",
+        "function_call": {
+          "id": "item_d330fdccd167/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+          "arguments": "{\"name\": \"John Doe\"}",
+          "name": "collect_name",
+          "created_at": 1791467392.1464782,
+          "extra": {},
+          "group_id": null
+        }
+      },
+      "created_at": 1791467392.1488695
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_ended",
+        "id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+        "call_id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+        "message": "No valid caller name was provided. Ask the caller for their full name and wait for the answer.",
+        "status": "done"
+      },
+      "created_at": 1791467392.1526878
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 1619,
+            "input_cached_tokens": 0,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 29,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 5,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467392.1555572
+    },
+    {
+      "type": "function_tools_executed",
+      "function_calls": [
+        {
+          "id": "item_d330fdccd167/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+          "arguments": "{\"name\": \"John Doe\"}",
+          "name": "collect_name",
+          "created_at": 1791467392.1464782,
+          "extra": {},
+          "group_id": null
+        }
+      ],
+      "function_call_outputs": [
+        {
+          "id": "item_f138c7f5e942",
+          "type": "function_call_output",
+          "name": "collect_name",
+          "call_id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+          "output": "No valid caller name was provided. Ask the caller for their full name and wait for the answer.",
+          "is_error": false,
+          "created_at": 1791467392.1520498,
+          "reply_required": true
+        }
+      ],
+      "created_at": 1791467392.1594768
+    },
+    {
+      "type": "error",
+      "error": {
+        "type": "llm_error",
+        "timestamp": 1791467442.534983,
+        "label": "livekit.plugins.groq.services.LLM",
+        "recoverable": true
+      },
+      "source": {
+        "model": "openai/gpt-oss-20b",
+        "provider": "api.groq.com"
+      },
+      "created_at": 1791467442.534983
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "listening",
+      "created_at": 1791467446.6069622
+    },
+    {
+      "type": "close",
+      "error": null,
+      "reason": "user_initiated",
+      "created_at": 1791467446.6286042
+    }
+  ],
+  "audio_recording_path": null,
+  "audio_recording_started_at": null,
+  "options": {
+    "allow_interruptions": true,
+    "discard_audio_if_uninterruptible": true,
+    "min_interruption_duration": 0.5,
+    "min_interruption_words": 0,
+    "min_endpointing_delay": 0.5,
+    "max_endpointing_delay": 3.0,
+    "max_tool_steps": 3,
+    "user_away_timeout": 15.0,
+    "min_consecutive_speech_delay": 0.0,
+    "preemptive_generation": {
+      "enabled": true,
+      "preemptive_tts": false,
+      "max_speech_duration": 10.0,
+      "max_retries": 3
+    },
+    "recording_options": {
+      "audio": false,
+      "traces": true,
+      "logs": true,
+      "transcript": true,
+      "redaction": false
+    }
+  },
+  "chat_history": {
+    "items": [
+      {
+        "id": "item_8087885cc9b3",
+        "type": "agent_handoff",
+        "new_agent_id": "reception_agent",
+        "created_at": 1791467375.2967422
+      },
+      {
+        "id": "item_7fb36980a4e8",
+        "type": "agent_config_update",
+        "instructions": "\nYou are a voice assistant for CityCare Clinic.\n\nClinic information:\n\n- Name: CityCare Clinic\n- Monday to Friday: 8:00 AM to 6:00 PM\n- Saturday: 9:00 AM to 1:00 PM\n- Sunday: Closed\n- Address: 12 Park Road\n- Services: general check-up, blood tests, vaccines, children's doctor\n- Free parking behind the building\n- Most major insurance plans are accepted.\n\nVoice rules:\n\n- Speak naturally.\n- Keep responses short.\n- Ask one question at a time.\n- Do not use markdown in spoken responses.\n- Never give medical advice.\n- Never diagnose a condition.\n- Never recommend medication or dosage.\n- Never invent appointment, billing, identity, or clinic information.\n\nPUBLIC INFORMATION:\n\nQuestions about clinic services, opening hours, address, parking,\nand insurance are public information.\n\nAnswer these questions directly.\n\nDo not ask for:\n- name\n- phone number\n- date of birth\n- identity verification\n\nunless the caller is requesting a protected appointment or billing action.\n\nMEDICAL ADVICE:\n\nIf the caller asks for diagnosis, treatment, medication, dosage,\nor medical advice, do not provide medical advice.\n\nExplain that a clinician should provide medical advice and offer\nappropriate clinic assistance if useful.\n\n\nYou are the ReceptionAgent.\n\nYour responsibilities:\n\n- Greet the caller.\n- Understand what the caller needs.\n- Answer public clinic questions.\n- Collect caller identity when required.\n- Verify caller identity.\n- Hand verified callers to BookingAgent.\n- Hand verified callers to BillingAgent.\n- Receive the caller back from specialist agents.\n\n========================================================\nIDENTITY COLLECTION \u2014 STRICT STATE MACHINE\n========================================================\n\nIdentity must ALWAYS be collected in this exact order:\n\n1. Full name\n2. Phone number\n3. Date of birth\n4. Verification\n\nNEVER skip a step.\n\nNEVER collect DOB before phone.\n\nNEVER verify before all three values have been collected.\n\nIMPORTANT:\n\nA tool argument must come from the caller's actual answer.\n\nNEVER invent a value.\n\nNEVER guess a value.\n\nNEVER use a placeholder.\n\nNEVER use:\n- 555-1234\n- 5551234\n- unknown\n- none\n- n/a\n- null\n- empty values\n- example values\n\nIf the caller has not supplied the requested identity value,\nask for that value and WAIT for the caller's next answer.\n\nDo not call the collection tool immediately after asking\nthe question.\n\nIf a collection tool returns \"No valid\" or \"not valid\",\ndo not invent a value and do not call the same tool again\nuntil the caller provides a new answer.\n\nAfter a successful collection tool result, ask exactly the\nnext question and wait for the next caller turn.\n\n========================================================\nONE QUESTION AT A TIME\n========================================================\n\nAsk only one identity question at a time.\n\nExample:\n\nAgent:\n\"May I have your full name?\"\n\nWAIT.\n\nCaller answers.\n\nThen call collect_name.\n\nAfter a successful collection:\n\nAgent:\n\"What is your phone number?\"\n\nWAIT.\n\nCaller answers.\n\nThen call collect_phone.\n\nAfter a successful collection:\n\nAgent:\n\"What is your date of birth?\"\n\nWAIT.\n\nCaller answers.\n\nThen call collect_date_of_birth.\n\nFinally call verify_caller only after all three collection\ntools returned successful results.\n\nIf verification fails, do not hand off to BookingAgent or\nBillingAgent.\n========================================================\nPUBLIC INFORMATION\n========================================================\n\nFor services, hours, address, parking, and insurance:\n\n- Answer directly.\n- Do not collect identity.\n- Do not verify identity.\n\n- If the caller asks multiple public-information questions\n  in one turn, answer ALL parts in the SAME response.\n- Do not answer only the first part.\n- Do not end the turn until every requested\n  public-information item has been answered.\n\n- Use the exact clinic information from the system prompt.\n\n- If the caller asks about services, give all four services:\n  general check-up, blood tests, vaccines, and children's doctor.\n\n- If the caller asks about hours, give:\n  Monday-Friday 8:00 AM-6:00 PM,\n  Saturday 9:00 AM-1:00 PM,\n  Sunday closed.\n\n- If the caller asks about parking, say:\n  free parking is available behind the building.\n\n- If the caller asks about the address, say:\n  12 Park Road.\n\n- If the caller asks about insurance, say:\n  most major insurance plans are accepted.\n\n- After answering a multi-part public-information question,\n  ask one short follow-up such as:\n  \"Is there anything else I can help with?\"\n\n========================================================\n  ========================================================\n  APPOINTMENT CANCELLATION / CHANGE REQUEST\n  ========================================================\n\n  If the caller wants to cancel or change an existing appointment:\n\n  - This is a protected appointment action.\n  - Do NOT claim that an appointment was cancelled or changed.\n  - Do NOT invent or assume an appointment ID.\n  - Identity verification is required.\n  - Collect the caller's name, phone number, and date of birth\n    using the strict identity sequence.\n  - Verify the caller.\n  - After successful verification, call handoff_to_booking.\n  - Let BookingAgent handle finding, selecting, confirming,\n    cancelling, or changing the appointment.\n\n  If the caller has not provided identity information yet,\n  ask for the required identity information one question at a time.\n\n  Never say an appointment was cancelled or changed unless\n  the appropriate tool actually completed the operation.\n\n  ========================================================\n  BOOKING REQUEST\n  ======================================================== \n========================================================\nBOOKING REQUEST\n========================================================\n\nIf the caller wants to book an appointment:\n\n- Identity verification is required.\n- Collect identity using the strict sequence.\n- Then hand off to BookingAgent.\n\n========================================================\nBILLING REQUEST\n========================================================\n\nIf the caller wants protected billing information:\n\n- Identity verification is required.\n- Collect identity using the strict sequence.\n- Then hand off to BillingAgent.\n\n========================================================\nWITHDRAWAL\n========================================================\n\nIf the caller says:\n\n- I changed my mind\n- Never mind\n- I don't want to book\n- Stop\n- Cancel that\n- Don't book it\n\nimmediately stop the pending booking flow.\n\nDo not call book_appointment.\n\nTell the caller that no appointment was booked.\n\nAsk if there is anything else you can help with.\n",
+        "tools_added": [
+          "collect_date_of_birth",
+          "collect_name",
+          "collect_phone",
+          "handoff_to_billing",
+          "handoff_to_booking",
+          "search_policies",
+          "verify_caller"
+        ],
+        "created_at": 1791467375.300566
+      },
+      {
+        "id": "item_fed0d8ca45c0",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "I am really frustrated. I need to cancel my appointment."
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467384.5329702
+      },
+      {
+        "id": "item_d330fdccd167/fnc_0",
+        "type": "function_call",
+        "call_id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+        "arguments": "{\"name\": \"John Doe\"}",
+        "name": "collect_name",
+        "created_at": 1791467392.1464782,
+        "extra": {}
+      },
+      {
+        "id": "item_f138c7f5e942",
+        "type": "function_call_output",
+        "name": "collect_name",
+        "call_id": "fc_8ff81283-98f8-4ff0-911e-925918e229a8",
+        "output": "No valid caller name was provided. Ask the caller for their full name and wait for the answer.",
+        "is_error": false,
+        "created_at": 1791467392.1520498,
+        "reply_required": true
+      }
+    ]
+  },
+  "timestamp": 1791467446.6308408,
+  "usage": [
+    {
+      "provider": "api.groq.com",
+      "model": "openai/gpt-oss-20b",
+      "input_tokens": 1619,
+      "output_tokens": 29,
+      "output_reasoning_tokens": 5
+    }
+  ],
+  "sdk_version": "1.8.3"
+}

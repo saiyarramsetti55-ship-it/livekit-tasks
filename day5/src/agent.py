@@ -2,7 +2,9 @@
 import asyncio
 import json
 import logging
+import os
 import re
+import sys
 import textwrap
 from dataclasses import dataclass
 from datetime import datetime
@@ -35,8 +37,11 @@ from livekit.agents.llm import ChatMessage, FallbackAdapter
 from livekit.plugins import ai_coustics
 from livekit.plugins.groq import LLM as GroqLLM
 
+load_dotenv(Path(__file__).resolve().parent / ".env.local")
+load_dotenv(Path(__file__).resolve().parent / ".env")
+load_dotenv(Path(__file__).resolve().parents[1] / ".env.local")
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
-import sys
 if hasattr(sys.stdout, "reconfigure"):
     try:
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -56,14 +61,17 @@ logger = logging.getLogger("citycare-agent")
 
 
 def build_llm() -> FallbackAdapter:
-    """Build high-performance, ultra-low latency LLM adapter with primary and fallback providers."""
-    primary = GroqLLM(model="llama-3.1-8b-instant")
-    fallback = GroqLLM(model="llama-3.3-70b-versatile")
+    """Build high-performance LLM adapter with primary and fallback providers."""
+    key = os.getenv("GROQ_API_KEY")
+    primary = GroqLLM(model="llama-3.3-70b-versatile", api_key=key)
+    fallback = GroqLLM(model="llama-3.1-8b-instant", api_key=key)
     return FallbackAdapter(
         llm=[primary, fallback],
-        attempt_timeout=4.0,
+        attempt_timeout=6.0,
         max_retry_per_llm=1,
     )
+
+
 
 
 
@@ -2626,7 +2634,7 @@ async def my_agent(
         llm=build_llm(),
 
         stt=inference.STT(
-            model="deepgram/nova-3",
+            model="assemblyai/universal-3-5-pro",
             language="en",
         ),
 
@@ -2653,7 +2661,8 @@ async def my_agent(
         ),
 
         tts=inference.TTS(
-            model="cartesia/sonic-english",
+            model="fishaudio/s2.1-pro",
+            voice="fa4c9eb3dccc4806b382b40d61c6b10a",
         ),
 
         turn_handling=TurnHandlingOptions(
@@ -2664,8 +2673,8 @@ async def my_agent(
 
             endpointing={
                 "mode": "fixed",
-                "min_delay": 0.15,
-                "max_delay": 0.70,
+                "min_delay": 0.20,
+                "max_delay": 0.80,
             },
 
             interruption={
@@ -2728,9 +2737,21 @@ async def my_agent(
     await session.start(
         agent=ReceptionAgent(),
         room=ctx.room,
+        room_options=room_io.RoomOptions(
+            audio_input=room_io.AudioInputOptions(
+                noise_cancellation=ai_coustics.audio_enhancement(
+                    model=ai_coustics.EnhancerModel.QUAIL_VF_S
+                ),
+            ),
+        ),
     )
 
     await ctx.connect()
+
+    # Greet caller immediately upon connection
+    await session.generate_reply(
+        agent=ReceptionAgent(),
+    )
 
 
 # ============================================================
@@ -2745,3 +2766,4 @@ if __name__ == "__main__":
             agent_name="citycare",
         )
     )
+

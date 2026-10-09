@@ -36,11 +36,35 @@ from livekit.plugins import ai_coustics
 from livekit.plugins.groq import LLM as GroqLLM
 
 
+import sys
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+if hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 # ============================================================
 # LOGGING
 # ============================================================
 
 logger = logging.getLogger("citycare-agent")
+
+
+def build_llm() -> FallbackAdapter:
+    """Build high availability LLM adapter with primary and fallback providers."""
+    primary = GroqLLM(model="llama-3.3-70b-versatile")
+    fallback = GroqLLM(model="llama-3.1-8b-instant")
+    return FallbackAdapter(
+        llm=[primary, fallback],
+        attempt_timeout=8.0,
+        max_retry_per_llm=1,
+    )
+
 
 
 # ============================================================
@@ -2598,6 +2622,7 @@ async def my_agent(
 
     session = AgentSession[CallerData](
         userdata=CallerData(),
+        llm=build_llm(),
 
         stt=inference.STT(
             model="assemblyai/universal-3-5-pro",

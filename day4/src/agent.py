@@ -295,6 +295,14 @@ class ReceptionAgent(Agent):
                 IDENTITY COLLECTION — STRICT STATE MACHINE
                 ========================================================
 
+                CRITICAL FIRST-TURN RULE:
+                - When the caller states their initial intent (e.g. "I want to book", "I need to cancel", "I want to check my appointment"), DO NOT call collect_name or any tool immediately.
+                - First respond verbally and ask: "Sure, may I have your full name, please?"
+                - WAIT for the caller to provide their name in their next turn.
+                - ONLY call collect_name AFTER the caller has actually spoken their name.
+                - NEVER call collect_name with "?", "unknown", "John Doe", "User", "Caller", punctuation, or any invented/placeholder name.
+                - If the caller did not state a real person's name in their latest message, DO NOT invoke collect_name; ask for their name verbally instead.
+
                 Identity must ALWAYS be collected in this exact order:
 
                 1. Full name
@@ -303,36 +311,17 @@ class ReceptionAgent(Agent):
                 4. Verification
 
                 NEVER skip a step.
-
                 NEVER collect DOB before phone.
-
                 NEVER verify before all three values have been collected.
 
                 IMPORTANT:
-
-                A tool argument must come from the caller's actual answer.
-
-                NEVER invent a value.
-
-                NEVER guess a value.
-
-                NEVER use a placeholder.
-
-                NEVER use:
-                - 555-1234
-                - 5551234
-                - unknown
-                - none
-                - n/a
-                - null
-                - empty values
-                - example values
-
-                If the caller has not supplied the requested identity value,
-                ask for that value and WAIT for the caller's next answer.
-
-                Do not call the collection tool immediately after asking
-                the question.
+                - A tool argument must come strictly from the caller's actual spoken words in their latest turn.
+                - NEVER invent or hallucinate any phone number, date of birth, name, or confirmation.
+                - NEVER guess a value.
+                - NEVER use any placeholder or dummy value.
+                - If the caller has not supplied the requested identity value yet, ASK for that value and WAIT for their answer. DO NOT call any tool in that turn.
+                - Only call ONE tool per user turn.
+                - After a successful collection tool result, ask the next question verbally and STOP. Do not call another tool in the same turn.
 
                 If a collection tool returns "No valid" or "not valid",
                 do not invent a value and do not call the same tool again
@@ -452,24 +441,16 @@ class ReceptionAgent(Agent):
                   BOOKING REQUEST
                   ======================================================== 
                 ========================================================
-                BOOKING REQUEST
+                ========================================================
+                HANDOFF FLOW
                 ========================================================
 
-                If the caller wants to book an appointment:
-
-                - Identity verification is required.
-                - Collect identity using the strict sequence.
-                - Then hand off to BookingAgent.
-
-                ========================================================
-                BILLING REQUEST
-                ========================================================
-
-                If the caller wants protected billing information:
-
-                - Identity verification is required.
-                - Collect identity using the strict sequence.
-                - Then hand off to BillingAgent.
+                When verify_caller succeeds:
+                - If the caller wants to book, cancel, or change an appointment:
+                  Call handoff_to_booking immediately. Say: "Your identity is verified. I am transferring you to our appointments assistant now."
+                - If the caller wants billing information:
+                  Call handoff_to_billing immediately. Say: "Your identity is verified. I am transferring you to our billing assistant now."
+                - NEVER say "Have a great day", "Goodbye", "They will contact you later", or "Is there anything else?" when transferring. Only say you are transferring them.
 
                 ========================================================
                 WITHDRAWAL
@@ -707,6 +688,12 @@ class ReceptionAgent(Agent):
             "null",
             "date of birth",
             "dob",
+            "01/01/1990",
+            "1990-01-01",
+            "01/01/1970",
+            "1970-01-01",
+            "01/01/2000",
+            "00/00/0000",
         }
 
         instruction_fragments = (
@@ -791,8 +778,7 @@ class ReceptionAgent(Agent):
         """
         Verify caller identity.
 
-        Verification cannot run until name, phone, and DOB
-        are all collected.
+        Verification requires name, phone, and DOB to all be collected successfully first.
         """
 
         data = context.session.userdata
@@ -815,7 +801,7 @@ class ReceptionAgent(Agent):
             data.verified = False
             return (
                 "Identity verification cannot start. "
-                "Collect the caller's date of birth first."
+                "Collect the caller's date of birth first using collect_date_of_birth."
             )
 
         # ----------------------------------------------------
@@ -1071,8 +1057,20 @@ class BookingAgent(Agent):
                 NEVER say an appointment was cancelled unless
                 cancel_appointment itself returned a successful result.
 
-                Never cancel based only on an appointment ID
-                that was invented or guessed.
+                ========================================================
+                HANDOFF CONTINUATION
+                ========================================================
+
+                When you receive a handoff from ReceptionAgent:
+                - The caller is ALREADY verified.
+                - NEVER ask the caller for their name, phone, or DOB again.
+                - If the caller previously requested to cancel an appointment (or mentions cancelling an appointment like ID 1):
+                  1. Call find_appointments with the verified caller's phone number.
+                  2. Select the appointment using confirm_appointment_for_cancellation.
+                  3. Ask the caller to confirm cancellation: "Would you like me to go ahead and cancel this appointment?"
+                  4. After the caller confirms, call confirm_cancellation and cancel_appointment.
+                - If the caller requested to book:
+                  Ask which service and date they would like to schedule.
 
                 ========================================================
                 CHANGE APPOINTMENT
@@ -1104,6 +1102,23 @@ class BookingAgent(Agent):
                 """
             ),
             llm=build_llm(),
+        )
+
+    # --------------------------------------------------------
+    # ENTER
+    # --------------------------------------------------------
+
+    async def on_enter(self):
+        await self.session.generate_reply(
+            instructions=(
+                "You are the appointments assistant now speaking to the verified caller. "
+                "Check the conversation history. "
+                "1. If the caller asked to cancel an appointment (e.g. appointment ID 1): "
+                "call find_appointments, select the appointment with confirm_appointment_for_cancellation, and ask: 'Would you like me to cancel your appointment?' and wait for their confirmation. "
+                "2. If the caller asked to book an appointment (e.g. general check-up on 2026-10-05 at 09:00): "
+                "ask the caller: 'I can book a general check-up on 2026-10-05 at 09:00 for you. Would you like me to confirm this booking?' and wait for their confirmation. "
+                "3. Otherwise, greet the caller and ask how you can help with their appointment."
+            )
         )
 
     # --------------------------------------------------------
@@ -1504,7 +1519,7 @@ class BookingAgent(Agent):
     async def find_appointments(
         self,
         context: RunContext[CallerData],
-        phone: str,
+        phone: str = "",
     ) -> str:
         """
         Find appointments for the verified caller.
@@ -1518,7 +1533,8 @@ class BookingAgent(Agent):
                 "before viewing appointments."
             )
 
-        normalized_phone = normalize_phone(phone)
+        target_phone = phone.strip() if phone else (data.phone or "")
+        normalized_phone = normalize_phone(target_phone)
 
         # Never search using a different phone number.
         if normalized_phone != (data.phone or ""):
@@ -2160,6 +2176,18 @@ class BillingAgent(Agent):
                 """
             ),
             llm=build_llm(),
+        )
+
+    # --------------------------------------------------------
+    # ENTER
+    # --------------------------------------------------------
+
+    async def on_enter(self):
+        await self.session.generate_reply(
+            instructions=(
+                "You are the billing assistant now speaking to the verified caller. "
+                "Greet the caller and fetch their bill information or ask how you can assist them with billing."
+            )
         )
 
     # --------------------------------------------------------

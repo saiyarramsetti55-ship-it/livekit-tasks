@@ -53,9 +53,18 @@ class AppointmentUpdate(BaseModel):
 # DATA
 # ============================================================
 
-appointments: list[dict] = []
+appointments: list[dict] = [
+    {
+        "id": "1",
+        "name": "Sai",
+        "phone": "9999999999",
+        "date": "2026-10-05",
+        "time": "09:00",
+        "service": "general check-up",
+    }
+]
 
-next_appointment_id = 1
+next_appointment_id = 2
 
 slots_cache: dict[str, list[str]] = {}
 

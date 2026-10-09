@@ -56,14 +56,15 @@ logger = logging.getLogger("citycare-agent")
 
 
 def build_llm() -> FallbackAdapter:
-    """Build high availability LLM adapter with primary and fallback providers."""
-    primary = GroqLLM(model="llama-3.3-70b-versatile")
-    fallback = GroqLLM(model="llama-3.1-8b-instant")
+    """Build high-performance, ultra-low latency LLM adapter with primary and fallback providers."""
+    primary = GroqLLM(model="llama-3.1-8b-instant")
+    fallback = GroqLLM(model="llama-3.3-70b-versatile")
     return FallbackAdapter(
         llm=[primary, fallback],
-        attempt_timeout=8.0,
+        attempt_timeout=4.0,
         max_retry_per_llm=1,
     )
+
 
 
 
@@ -2625,7 +2626,7 @@ async def my_agent(
         llm=build_llm(),
 
         stt=inference.STT(
-            model="assemblyai/universal-3-5-pro",
+            model="deepgram/nova-3",
             language="en",
         ),
 
@@ -2652,8 +2653,7 @@ async def my_agent(
         ),
 
         tts=inference.TTS(
-            model="fishaudio/s2.1-pro",
-            voice="fa4c9eb3dccc4806b382b40d61c6b10a",
+            model="cartesia/sonic-english",
         ),
 
         turn_handling=TurnHandlingOptions(
@@ -2664,8 +2664,8 @@ async def my_agent(
 
             endpointing={
                 "mode": "fixed",
-                "min_delay": 0.5,
-                "max_delay": 3.0,
+                "min_delay": 0.15,
+                "max_delay": 0.70,
             },
 
             interruption={

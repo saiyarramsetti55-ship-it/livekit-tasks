@@ -31,7 +31,7 @@ jobs:
         run: |
           uv sync --dev
 
-      - name: Run Unit Tests
+      - name: Run Unit Tests (Day 4)
         working-directory: day4
         env:
           LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
@@ -41,27 +41,28 @@ jobs:
         run: |
           uv run pytest -v
 
-      - name: Install LiveKit CLI (Optional simulation runner)
-        run: |
-          curl -sSL https://get.livekit.io/cli | bash || true
-
-      - name: Run Scenarios Simulation
+      - name: Run Latency Evaluation Check (Day 4)
         working-directory: day4
+        run: |
+          uv run python latency_report.py
+
+      - name: Install Dependencies (Day 5)
+        working-directory: day5
+        run: |
+          uv sync --dev
+
+      - name: Run Unit Tests & Capstone Suite (Day 5)
+        working-directory: day5
         env:
           LIVEKIT_URL: ${{ secrets.LIVEKIT_URL }}
           LIVEKIT_API_KEY: ${{ secrets.LIVEKIT_API_KEY }}
           LIVEKIT_API_SECRET: ${{ secrets.LIVEKIT_API_SECRET }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: |
-          # If livekit credentials and server are active, run simulation; otherwise verify scenario syntax
-          if [ -n "${{ secrets.LIVEKIT_URL }}" ] && [ -n "${{ secrets.LIVEKIT_API_KEY }}" ]; then
-            lk agent simulate --scenario-group scenarios.yaml || echo "Simulation completed with report generation."
-          else
-            echo "Secrets not configured in runner context; verifying scenarios.yaml structure."
-            python3 -c "import yaml; yaml.safe_load(open('scenarios.yaml'))"
-          fi
+          uv run pytest -v
 
-      - name: Run Latency Evaluation Check
-        working-directory: day4
+      - name: Run Latency Evaluation Check (Day 5)
+        working-directory: day5
         run: |
           uv run python latency_report.py
+

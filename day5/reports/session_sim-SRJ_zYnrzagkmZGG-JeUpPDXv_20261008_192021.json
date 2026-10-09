@@ -1,0 +1,1071 @@
+{
+  "job_id": "AJ_KKsjEyDkbCPj",
+  "room_id": "RM_244cueVnaBAV",
+  "room": "sim-SRJ_zYnrzagkmZGG-JeUpPDXv",
+  "events": [
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_dcab99e54ad1",
+        "type": "agent_handoff",
+        "old_agent_id": null,
+        "new_agent_id": "reception_agent",
+        "created_at": 1791467255.5254686
+      },
+      "created_at": 1791467255.5261264
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467255.5650163
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "initializing",
+      "new_state": "thinking",
+      "created_at": 1791467255.5797849
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "listening",
+      "created_at": 1791467255.8109477
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "listening",
+      "new_state": "speaking",
+      "created_at": 1791467259.2342093
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 1626,
+            "input_cached_tokens": 0,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 30,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 5,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467259.2776265
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_ba8b8a3d2341",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "Hello! You\u2019ve reached CityCare Clinic. How can I help you today?"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467259.2342093,
+          "stopped_speaking_at": 1791467259.3085449,
+          "llm_node_ttft": 3.6633412999799475,
+          "llm_node_tps": 670.0287226106221,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467255.5797849,
+        "hash": null
+      },
+      "created_at": 1791467259.310588
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "speaking",
+      "new_state": "listening",
+      "created_at": 1791467259.3120742
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467260.699035
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_afa906448e09",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "Hi, I want to book a general check-up."
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467260.699035,
+        "hash": null
+      },
+      "created_at": 1791467260.7341933
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "listening",
+      "new_state": "thinking",
+      "created_at": 1791467260.7359693
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_started",
+        "function_call": {
+          "id": "item_50edf036d2f1/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+          "arguments": "{\"name\": \"John Doe\"}",
+          "name": "collect_name",
+          "created_at": 1791467272.4361255,
+          "extra": {},
+          "group_id": null
+        }
+      },
+      "created_at": 1791467272.4382632
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_ended",
+        "id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+        "call_id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+        "message": "No valid caller name was provided. Ask the caller for their full name and wait for the answer.",
+        "status": "done"
+      },
+      "created_at": 1791467272.443391
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 3266,
+            "input_cached_tokens": 0,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 59,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 10,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467272.445915
+    },
+    {
+      "type": "function_tools_executed",
+      "function_calls": [
+        {
+          "id": "item_50edf036d2f1/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+          "arguments": "{\"name\": \"John Doe\"}",
+          "name": "collect_name",
+          "created_at": 1791467272.4361255,
+          "extra": {},
+          "group_id": null
+        }
+      ],
+      "function_call_outputs": [
+        {
+          "id": "item_2cac0ead543d",
+          "type": "function_call_output",
+          "name": "collect_name",
+          "call_id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+          "output": "No valid caller name was provided. Ask the caller for their full name and wait for the answer.",
+          "is_error": false,
+          "created_at": 1791467272.4412782,
+          "reply_required": true
+        }
+      ],
+      "created_at": 1791467272.4497619
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "speaking",
+      "created_at": 1791467285.1670563
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 4953,
+            "input_cached_tokens": 0,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 86,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 19,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467285.1774328
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_d229fc839bb2",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "May I have your full name, please?"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467285.1670563,
+          "stopped_speaking_at": 1791467285.1846578,
+          "llm_node_ttft": 12.712893400050234,
+          "llm_node_tps": 3041.842246758803,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467272.4698381,
+        "hash": null
+      },
+      "created_at": 1791467285.1856308
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "speaking",
+      "new_state": "listening",
+      "created_at": 1791467285.1856308
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467288.7775798
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_65eabf8f351f",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "Sai"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467288.7775798,
+        "hash": null
+      },
+      "created_at": 1791467288.8031044
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "listening",
+      "new_state": "thinking",
+      "created_at": 1791467288.8038006
+    },
+    {
+      "type": "error",
+      "error": {
+        "type": "llm_error",
+        "timestamp": 1791467324.2656908,
+        "label": "livekit.plugins.groq.services.LLM",
+        "recoverable": true
+      },
+      "source": {
+        "model": "openai/gpt-oss-20b",
+        "provider": "api.groq.com"
+      },
+      "created_at": 1791467324.2656908
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_started",
+        "function_call": {
+          "id": "item_2e756e6bd559/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+          "arguments": "{\"name\": \"Sai\"}",
+          "name": "collect_name",
+          "created_at": 1791467327.016387,
+          "extra": {},
+          "group_id": null
+        }
+      },
+      "created_at": 1791467327.0194116
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_ended",
+        "id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+        "call_id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+        "message": "Caller name recorded. Ask for the phone number next.",
+        "status": "done"
+      },
+      "created_at": 1791467327.0244336
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 6660,
+            "input_cached_tokens": 0,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 111,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 24,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467327.0275352
+    },
+    {
+      "type": "function_tools_executed",
+      "function_calls": [
+        {
+          "id": "item_2e756e6bd559/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+          "arguments": "{\"name\": \"Sai\"}",
+          "name": "collect_name",
+          "created_at": 1791467327.016387,
+          "extra": {},
+          "group_id": null
+        }
+      ],
+      "function_call_outputs": [
+        {
+          "id": "item_0e4d2beb93b2",
+          "type": "function_call_output",
+          "name": "collect_name",
+          "call_id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+          "output": "Caller name recorded. Ask for the phone number next.",
+          "is_error": false,
+          "created_at": 1791467327.0244336,
+          "reply_required": true
+        }
+      ],
+      "created_at": 1791467327.034652
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "speaking",
+      "created_at": 1791467340.801573
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 8404,
+            "input_cached_tokens": 0,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 136,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 24,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467340.8229744
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_70e86c3ff2fa",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "What is your phone number?"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467340.801573,
+          "stopped_speaking_at": 1791467340.8264816,
+          "llm_node_ttft": 13.756934600009117,
+          "llm_node_tps": 4602.441155520071,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467327.0727787,
+        "hash": null
+      },
+      "created_at": 1791467340.827764
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "speaking",
+      "new_state": "listening",
+      "created_at": 1791467340.8283372
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467345.0441825
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_cd7c1712b791",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "[REDACTED_PHONE]"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467345.0441825,
+        "hash": null
+      },
+      "created_at": 1791467345.0793579
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "listening",
+      "new_state": "thinking",
+      "created_at": 1791467345.0798666
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_started",
+        "function_call": {
+          "id": "item_7f080e64d509/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+          "arguments": "{\"phone\": \"[REDACTED_PHONE]\"}",
+          "name": "collect_phone",
+          "created_at": 1791467353.977279,
+          "extra": {},
+          "group_id": null
+        }
+      },
+      "created_at": 1791467353.9791737
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_ended",
+        "id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+        "call_id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+        "message": "Phone number recorded. Ask for the date of birth next.",
+        "status": "done"
+      },
+      "created_at": 1791467353.9841938
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 10168,
+            "input_cached_tokens": 1536,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 154,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 24,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467353.9865537
+    },
+    {
+      "type": "function_tools_executed",
+      "function_calls": [
+        {
+          "id": "item_7f080e64d509/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+          "arguments": "{\"phone\": \"[REDACTED_PHONE]\"}",
+          "name": "collect_phone",
+          "created_at": 1791467353.977279,
+          "extra": {},
+          "group_id": null
+        }
+      ],
+      "function_call_outputs": [
+        {
+          "id": "item_d11c275f0a3a",
+          "type": "function_call_output",
+          "name": "collect_phone",
+          "call_id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+          "output": "Phone number recorded. Ask for the date of birth next.",
+          "is_error": false,
+          "created_at": 1791467353.9831984,
+          "reply_required": true
+        }
+      ],
+      "created_at": 1791467353.992743
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "speaking",
+      "created_at": 1791467356.4288425
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 11973,
+            "input_cached_tokens": 1792,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 191,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 24,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467356.4333482
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_6c32157dde74",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "What is your date of birth?"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467356.4288425,
+          "stopped_speaking_at": 1791467356.4473026,
+          "llm_node_ttft": 2.4258132000104524,
+          "llm_node_tps": 6092.039215182275,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467354.0450542,
+        "hash": null
+      },
+      "created_at": 1791467356.4483545
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "speaking",
+      "new_state": "listening",
+      "created_at": 1791467356.4483545
+    },
+    {
+      "type": "speech_created",
+      "user_initiated": true,
+      "source": "generate_reply",
+      "created_at": 1791467359.9863253
+    },
+    {
+      "type": "conversation_item_added",
+      "item": {
+        "id": "item_[REDACTED_PHONE]8c",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "[REDACTED_DOB]"
+        ],
+        "interrupted": false,
+        "transcript_confidence": null,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467359.9863253,
+        "hash": null
+      },
+      "created_at": 1791467360.0295682
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "listening",
+      "new_state": "thinking",
+      "created_at": 1791467360.03008
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_started",
+        "function_call": {
+          "id": "item_19f8d2015801/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+          "arguments": "{\"date_of_birth\": \"[REDACTED_DOB]\"}",
+          "name": "collect_date_of_birth",
+          "created_at": 1791467367.5165482,
+          "extra": {},
+          "group_id": null
+        }
+      },
+      "created_at": 1791467367.5191143
+    },
+    {
+      "type": "tool_execution_updated",
+      "update": {
+        "type": "tool_call_ended",
+        "id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+        "call_id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+        "message": "Date of birth recorded. All identity details are collected. Verification can now be performed.",
+        "status": "done"
+      },
+      "created_at": 1791467367.5344076
+    },
+    {
+      "type": "session_usage_updated",
+      "usage": {
+        "model_usage": [
+          {
+            "type": "llm_usage",
+            "provider": "api.groq.com",
+            "model": "openai/gpt-oss-20b",
+            "input_tokens": 13801,
+            "input_cached_tokens": 1792,
+            "input_cache_creation_tokens": 0,
+            "input_audio_tokens": 0,
+            "input_cached_audio_tokens": 0,
+            "input_text_tokens": 0,
+            "input_cached_text_tokens": 0,
+            "input_image_tokens": 0,
+            "input_cached_image_tokens": 0,
+            "output_tokens": 215,
+            "output_audio_tokens": 0,
+            "output_text_tokens": 0,
+            "output_reasoning_tokens": 24,
+            "session_duration": 0.0
+          }
+        ]
+      },
+      "created_at": 1791467367.5363612
+    },
+    {
+      "type": "function_tools_executed",
+      "function_calls": [
+        {
+          "id": "item_19f8d2015801/fnc_0",
+          "type": "function_call",
+          "call_id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+          "arguments": "{\"date_of_birth\": \"[REDACTED_DOB]\"}",
+          "name": "collect_date_of_birth",
+          "created_at": 1791467367.5165482,
+          "extra": {},
+          "group_id": null
+        }
+      ],
+      "function_call_outputs": [
+        {
+          "id": "item_e1b99d70fc74",
+          "type": "function_call_output",
+          "name": "collect_date_of_birth",
+          "call_id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+          "output": "Date of birth recorded. All identity details are collected. Verification can now be performed.",
+          "is_error": false,
+          "created_at": 1791467367.5334632,
+          "reply_required": true
+        }
+      ],
+      "created_at": 1791467367.5409274
+    },
+    {
+      "type": "error",
+      "error": {
+        "type": "llm_error",
+        "timestamp": 1791467419.0547295,
+        "label": "livekit.plugins.groq.services.LLM",
+        "recoverable": true
+      },
+      "source": {
+        "model": "openai/gpt-oss-20b",
+        "provider": "api.groq.com"
+      },
+      "created_at": 1791467419.0547295
+    },
+    {
+      "type": "agent_state_changed",
+      "old_state": "thinking",
+      "new_state": "listening",
+      "created_at": 1791467421.1162717
+    },
+    {
+      "type": "close",
+      "error": null,
+      "reason": "user_initiated",
+      "created_at": 1791467421.124082
+    }
+  ],
+  "audio_recording_path": null,
+  "audio_recording_started_at": null,
+  "options": {
+    "allow_interruptions": true,
+    "discard_audio_if_uninterruptible": true,
+    "min_interruption_duration": 0.5,
+    "min_interruption_words": 0,
+    "min_endpointing_delay": 0.5,
+    "max_endpointing_delay": 3.0,
+    "max_tool_steps": 3,
+    "user_away_timeout": 15.0,
+    "min_consecutive_speech_delay": 0.0,
+    "preemptive_generation": {
+      "enabled": true,
+      "preemptive_tts": false,
+      "max_speech_duration": 10.0,
+      "max_retries": 3
+    },
+    "recording_options": {
+      "audio": false,
+      "traces": true,
+      "logs": true,
+      "transcript": true,
+      "redaction": false
+    }
+  },
+  "chat_history": {
+    "items": [
+      {
+        "id": "item_dcab99e54ad1",
+        "type": "agent_handoff",
+        "new_agent_id": "reception_agent",
+        "created_at": 1791467255.5254686
+      },
+      {
+        "id": "item_3a98c2332f33",
+        "type": "agent_config_update",
+        "instructions": "\nYou are a voice assistant for CityCare Clinic.\n\nClinic information:\n\n- Name: CityCare Clinic\n- Monday to Friday: 8:00 AM to 6:00 PM\n- Saturday: 9:00 AM to 1:00 PM\n- Sunday: Closed\n- Address: 12 Park Road\n- Services: general check-up, blood tests, vaccines, children's doctor\n- Free parking behind the building\n- Most major insurance plans are accepted.\n\nVoice rules:\n\n- Speak naturally.\n- Keep responses short.\n- Ask one question at a time.\n- Do not use markdown in spoken responses.\n- Never give medical advice.\n- Never diagnose a condition.\n- Never recommend medication or dosage.\n- Never invent appointment, billing, identity, or clinic information.\n\nPUBLIC INFORMATION:\n\nQuestions about clinic services, opening hours, address, parking,\nand insurance are public information.\n\nAnswer these questions directly.\n\nDo not ask for:\n- name\n- phone number\n- date of birth\n- identity verification\n\nunless the caller is requesting a protected appointment or billing action.\n\nMEDICAL ADVICE:\n\nIf the caller asks for diagnosis, treatment, medication, dosage,\nor medical advice, do not provide medical advice.\n\nExplain that a clinician should provide medical advice and offer\nappropriate clinic assistance if useful.\n\n\nYou are the ReceptionAgent.\n\nYour responsibilities:\n\n- Greet the caller.\n- Understand what the caller needs.\n- Answer public clinic questions.\n- Collect caller identity when required.\n- Verify caller identity.\n- Hand verified callers to BookingAgent.\n- Hand verified callers to BillingAgent.\n- Receive the caller back from specialist agents.\n\n========================================================\nIDENTITY COLLECTION \u2014 STRICT STATE MACHINE\n========================================================\n\nIdentity must ALWAYS be collected in this exact order:\n\n1. Full name\n2. Phone number\n3. Date of birth\n4. Verification\n\nNEVER skip a step.\n\nNEVER collect DOB before phone.\n\nNEVER verify before all three values have been collected.\n\nIMPORTANT:\n\nA tool argument must come from the caller's actual answer.\n\nNEVER invent a value.\n\nNEVER guess a value.\n\nNEVER use a placeholder.\n\nNEVER use:\n- 555-1234\n- 5551234\n- unknown\n- none\n- n/a\n- null\n- empty values\n- example values\n\nIf the caller has not supplied the requested identity value,\nask for that value and WAIT for the caller's next answer.\n\nDo not call the collection tool immediately after asking\nthe question.\n\nIf a collection tool returns \"No valid\" or \"not valid\",\ndo not invent a value and do not call the same tool again\nuntil the caller provides a new answer.\n\nAfter a successful collection tool result, ask exactly the\nnext question and wait for the next caller turn.\n\n========================================================\nONE QUESTION AT A TIME\n========================================================\n\nAsk only one identity question at a time.\n\nExample:\n\nAgent:\n\"May I have your full name?\"\n\nWAIT.\n\nCaller answers.\n\nThen call collect_name.\n\nAfter a successful collection:\n\nAgent:\n\"What is your phone number?\"\n\nWAIT.\n\nCaller answers.\n\nThen call collect_phone.\n\nAfter a successful collection:\n\nAgent:\n\"What is your date of birth?\"\n\nWAIT.\n\nCaller answers.\n\nThen call collect_date_of_birth.\n\nFinally call verify_caller only after all three collection\ntools returned successful results.\n\nIf verification fails, do not hand off to BookingAgent or\nBillingAgent.\n========================================================\nPUBLIC INFORMATION\n========================================================\n\nFor services, hours, address, parking, and insurance:\n\n- Answer directly.\n- Do not collect identity.\n- Do not verify identity.\n\n- If the caller asks multiple public-information questions\n  in one turn, answer ALL parts in the SAME response.\n- Do not answer only the first part.\n- Do not end the turn until every requested\n  public-information item has been answered.\n\n- Use the exact clinic information from the system prompt.\n\n- If the caller asks about services, give all four services:\n  general check-up, blood tests, vaccines, and children's doctor.\n\n- If the caller asks about hours, give:\n  Monday-Friday 8:00 AM-6:00 PM,\n  Saturday 9:00 AM-1:00 PM,\n  Sunday closed.\n\n- If the caller asks about parking, say:\n  free parking is available behind the building.\n\n- If the caller asks about the address, say:\n  12 Park Road.\n\n- If the caller asks about insurance, say:\n  most major insurance plans are accepted.\n\n- After answering a multi-part public-information question,\n  ask one short follow-up such as:\n  \"Is there anything else I can help with?\"\n\n========================================================\n  ========================================================\n  APPOINTMENT CANCELLATION / CHANGE REQUEST\n  ========================================================\n\n  If the caller wants to cancel or change an existing appointment:\n\n  - This is a protected appointment action.\n  - Do NOT claim that an appointment was cancelled or changed.\n  - Do NOT invent or assume an appointment ID.\n  - Identity verification is required.\n  - Collect the caller's name, phone number, and date of birth\n    using the strict identity sequence.\n  - Verify the caller.\n  - After successful verification, call handoff_to_booking.\n  - Let BookingAgent handle finding, selecting, confirming,\n    cancelling, or changing the appointment.\n\n  If the caller has not provided identity information yet,\n  ask for the required identity information one question at a time.\n\n  Never say an appointment was cancelled or changed unless\n  the appropriate tool actually completed the operation.\n\n  ========================================================\n  BOOKING REQUEST\n  ======================================================== \n========================================================\nBOOKING REQUEST\n========================================================\n\nIf the caller wants to book an appointment:\n\n- Identity verification is required.\n- Collect identity using the strict sequence.\n- Then hand off to BookingAgent.\n\n========================================================\nBILLING REQUEST\n========================================================\n\nIf the caller wants protected billing information:\n\n- Identity verification is required.\n- Collect identity using the strict sequence.\n- Then hand off to BillingAgent.\n\n========================================================\nWITHDRAWAL\n========================================================\n\nIf the caller says:\n\n- I changed my mind\n- Never mind\n- I don't want to book\n- Stop\n- Cancel that\n- Don't book it\n\nimmediately stop the pending booking flow.\n\nDo not call book_appointment.\n\nTell the caller that no appointment was booked.\n\nAsk if there is anything else you can help with.\n",
+        "tools_added": [
+          "collect_date_of_birth",
+          "collect_name",
+          "collect_phone",
+          "handoff_to_billing",
+          "handoff_to_booking",
+          "search_policies",
+          "verify_caller"
+        ],
+        "created_at": 1791467255.5610101
+      },
+      {
+        "id": "item_ba8b8a3d2341",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "Hello! You\u2019ve reached CityCare Clinic. How can I help you today?"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467259.2342093,
+          "stopped_speaking_at": 1791467259.3085449,
+          "llm_node_ttft": 3.6633412999799475,
+          "llm_node_tps": 670.0287226106221,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467255.5797849
+      },
+      {
+        "id": "item_afa906448e09",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "Hi, I want to book a general check-up."
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467260.699035
+      },
+      {
+        "id": "item_50edf036d2f1/fnc_0",
+        "type": "function_call",
+        "call_id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+        "arguments": "{\"name\": \"John Doe\"}",
+        "name": "collect_name",
+        "created_at": 1791467272.4361255,
+        "extra": {}
+      },
+      {
+        "id": "item_2cac0ead543d",
+        "type": "function_call_output",
+        "name": "collect_name",
+        "call_id": "fc_3abfd138-33e7-4e5e-b6bf-1c933021d1e0",
+        "output": "No valid caller name was provided. Ask the caller for their full name and wait for the answer.",
+        "is_error": false,
+        "created_at": 1791467272.4412782,
+        "reply_required": true
+      },
+      {
+        "id": "item_d229fc839bb2",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "May I have your full name, please?"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467285.1670563,
+          "stopped_speaking_at": 1791467285.1846578,
+          "llm_node_ttft": 12.712893400050234,
+          "llm_node_tps": 3041.842246758803,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467272.4698381
+      },
+      {
+        "id": "item_65eabf8f351f",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "Sai"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467288.7775798
+      },
+      {
+        "id": "item_2e756e6bd559/fnc_0",
+        "type": "function_call",
+        "call_id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+        "arguments": "{\"name\": \"Sai\"}",
+        "name": "collect_name",
+        "created_at": 1791467327.016387,
+        "extra": {}
+      },
+      {
+        "id": "item_0e4d2beb93b2",
+        "type": "function_call_output",
+        "name": "collect_name",
+        "call_id": "fc_8d394f99-4d7b-41c3-85ff-8f3598579694",
+        "output": "Caller name recorded. Ask for the phone number next.",
+        "is_error": false,
+        "created_at": 1791467327.0244336,
+        "reply_required": true
+      },
+      {
+        "id": "item_70e86c3ff2fa",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "What is your phone number?"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467340.801573,
+          "stopped_speaking_at": 1791467340.8264816,
+          "llm_node_ttft": 13.756934600009117,
+          "llm_node_tps": 4602.441155520071,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467327.0727787
+      },
+      {
+        "id": "item_cd7c1712b791",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "[REDACTED_PHONE]"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467345.0441825
+      },
+      {
+        "id": "item_7f080e64d509/fnc_0",
+        "type": "function_call",
+        "call_id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+        "arguments": "{\"phone\": \"[REDACTED_PHONE]\"}",
+        "name": "collect_phone",
+        "created_at": 1791467353.977279,
+        "extra": {}
+      },
+      {
+        "id": "item_d11c275f0a3a",
+        "type": "function_call_output",
+        "name": "collect_phone",
+        "call_id": "fc_8d0e4bc1-e19b-4d50-a17f-a9a599ecd7b4",
+        "output": "Phone number recorded. Ask for the date of birth next.",
+        "is_error": false,
+        "created_at": 1791467353.9831984,
+        "reply_required": true
+      },
+      {
+        "id": "item_6c32157dde74",
+        "type": "message",
+        "role": "assistant",
+        "content": [
+          "What is your date of birth?"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {
+          "started_speaking_at": 1791467356.4288425,
+          "stopped_speaking_at": 1791467356.4473026,
+          "llm_node_ttft": 2.4258132000104524,
+          "llm_node_tps": 6092.039215182275,
+          "playback_latency": 0.0,
+          "llm_metadata": {
+            "model_name": "openai/gpt-oss-20b",
+            "model_provider": "api.groq.com"
+          }
+        },
+        "created_at": 1791467354.0450542
+      },
+      {
+        "id": "item_[REDACTED_PHONE]8c",
+        "type": "message",
+        "role": "user",
+        "content": [
+          "[REDACTED_DOB]"
+        ],
+        "interrupted": false,
+        "extra": {},
+        "metrics": {},
+        "created_at": 1791467359.9863253
+      },
+      {
+        "id": "item_19f8d2015801/fnc_0",
+        "type": "function_call",
+        "call_id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+        "arguments": "{\"date_of_birth\": \"[REDACTED_DOB]\"}",
+        "name": "collect_date_of_birth",
+        "created_at": 1791467367.5165482,
+        "extra": {}
+      },
+      {
+        "id": "item_e1b99d70fc74",
+        "type": "function_call_output",
+        "name": "collect_date_of_birth",
+        "call_id": "fc_54998cb4-3ed3-49de-9fae-20a7c9dfd515",
+        "output": "Date of birth recorded. All identity details are collected. Verification can now be performed.",
+        "is_error": false,
+        "created_at": 1791467367.5334632,
+        "reply_required": true
+      }
+    ]
+  },
+  "timestamp": 1791467421.1627572,
+  "usage": [
+    {
+      "provider": "api.groq.com",
+      "model": "openai/gpt-oss-20b",
+      "input_tokens": 13801,
+      "input_cached_tokens": 1792,
+      "output_tokens": 215,
+      "output_reasoning_tokens": 24
+    }
+  ],
+  "sdk_version": "1.8.3"
+}

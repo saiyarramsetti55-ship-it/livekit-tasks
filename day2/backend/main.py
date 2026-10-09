@@ -184,6 +184,38 @@ def get_appointments(
 
     return results
 
+# 7. Get billing information
+BILLS = {
+    "9999999999": {
+        "amount": "INR 1,500",
+        "due_date": "2026-10-15",
+        "status": "Due",
+    },
+    "8888888888": {
+        "amount": "INR 2,500",
+        "due_date": "2026-10-20",
+        "status": "Due",
+    },
+}
+
+
+@app.get("/bills")
+def get_bill(
+    phone: str = Query(..., description="Patient phone number")
+):
+    bill = BILLS.get(phone)
+
+    if bill is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Billing information not found",
+        )
+
+    return {
+        "phone": phone,
+        **bill,
+    }
+
 
 # 7. Slow endpoint
 @app.get("/slow")

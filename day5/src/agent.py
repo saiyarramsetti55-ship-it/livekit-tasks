@@ -239,14 +239,52 @@ def log_tool_time(tool_name: str, start: float) -> None:
 # PHONE HELPERS
 # ============================================================
 
+WORD_TO_DIGIT = {
+    "zero": "0", "oh": "0", "o": "0",
+    "one": "1", "won": "1",
+    "two": "2", "to": "2", "too": "2",
+    "three": "3",
+    "four": "4", "for": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8", "ate": "8",
+    "nine": "9",
+}
+
 def normalize_phone(phone: str) -> str:
-    """Return normalized 10-digit phone digits."""
-    digits = "".join(
-        ch for ch in (phone or "")
-        if ch.isdigit()
-    )
+    """Return normalized 10-digit phone digits, handling numeric and spoken words."""
+    if not phone:
+        return ""
+    s = str(phone).lower()
+
+    # Expand multipliers like 'double nine' or 'triple five'
+    multipliers = {"double": 2, "triple": 3}
+    for mult_word, count in multipliers.items():
+        pattern = re.compile(rf"\b{mult_word}\s+([a-z0-9]+)\b")
+        def repl(match):
+            val = match.group(1)
+            return " ".join([val] * count)
+        s = pattern.sub(repl, s)
+        s = pattern.sub(repl, s)
+
+    # Convert words to digits
+    tokens = re.findall(r"[a-z0-9]+", s)
+    digits_list: list[str] = []
+    for token in tokens:
+        if token.isdigit():
+            digits_list.append(token)
+        elif token in WORD_TO_DIGIT:
+            digits_list.append(WORD_TO_DIGIT[token])
+
+    digits = "".join(digits_list)
+
+    # Strip international country code prefix if present
     if len(digits) == 12 and digits.startswith("91"):
         digits = digits[2:]
+    elif len(digits) == 11 and digits.startswith("1"):
+        digits = digits[1:]
+
     return digits
 
 
@@ -2644,6 +2682,10 @@ async def my_agent(
             language="en",
             api_key=lk_key,
             api_secret=lk_secret,
+            extra_kwargs={
+                "smart_format": True,
+                "numerals": True,
+            },
         ),
 
         stt_context_options=STTContextOptions(
@@ -2686,8 +2728,8 @@ async def my_agent(
 
             endpointing={
                 "mode": "fixed",
-                "min_delay": 0.20,
-                "max_delay": 0.80,
+                "min_delay": 0.40,
+                "max_delay": 1.60,
             },
 
             interruption={

@@ -1,16 +1,16 @@
 # 📊 CityCare Clinic – Voice AI Latency Dashboard
 
-> **Last Updated**: `2026-10-09 18:44:38` | **Session Reports Evaluated**: `54` files
+> **Last Updated**: `2026-10-10 13:07:32` | **Session Reports Evaluated**: `73` files
 
 ## ⏱️ Live Latency Performance Summary (p50 & p95)
 
 | Metric | Count | p50 (Median) | p95 | Target SLA | Status |
 |---|---|---|---|---|---|
-| `e2e_latency` | 96 | **8.523 s** | **26.860 s** | `< 1.5s` | 🟡 WARN |
-| `end_of_turn_delay` | 10 | **0.002 s** | **0.887 s** | `< 0.8s` | 🟡 WARN |
-| `llm_node_ttft` | 130 | **4.589 s** | **16.335 s** | `< 0.8s` | 🟡 WARN |
-| `tts_node_ttfb` | 1 | **0.972 s** | **0.972 s** | `< 0.8s` | 🟡 WARN |
-| `transcription_delay` | 4 | **0.597 s** | **0.966 s** | `< 0.5s` | 🟡 WARN |
+| `e2e_latency` | 107 | **7.622 s** | **26.544 s** | `< 1.5s` | 🟡 WARN |
+| `end_of_turn_delay` | 21 | **0.002 s** | **1.067 s** | `< 0.8s` | 🟡 WARN |
+| `llm_node_ttft` | 151 | **3.662 s** | **17.285 s** | `< 0.8s` | 🟡 WARN |
+| `tts_node_ttfb` | 22 | **0.600 s** | **0.855 s** | `< 0.8s` | 🟡 WARN |
+| `transcription_delay` | 9 | **0.707 s** | **1.438 s** | `< 0.5s` | 🟡 WARN |
 
 ---
 

@@ -2592,7 +2592,10 @@ def prewarm(proc: JobProcess):
     except Exception as exc:
         logger.warning(f"Prewarm index notice: {exc}")
 
-
+@server.rtc_session(
+    agent_name="citycare",
+    on_session_end=on_session_end,
+)
 async def my_agent(
     ctx: JobContext,
 ):
@@ -2629,13 +2632,18 @@ async def my_agent(
     # SESSION
     # --------------------------------------------------------
 
+    lk_key = os.getenv("LIVEKIT_API_KEY")
+    lk_secret = os.getenv("LIVEKIT_API_SECRET")
+
     session = AgentSession[CallerData](
         userdata=CallerData(),
         llm=build_llm(),
 
         stt=inference.STT(
-            model="assemblyai/universal-3-5-pro",
+            model="deepgram/nova-3",
             language="en",
+            api_key=lk_key,
+            api_secret=lk_secret,
         ),
 
         stt_context_options=STTContextOptions(
@@ -2663,12 +2671,17 @@ async def my_agent(
         tts=inference.TTS(
             model="fishaudio/s2.1-pro",
             voice="fa4c9eb3dccc4806b382b40d61c6b10a",
+            api_key=lk_key,
+            api_secret=lk_secret,
         ),
 
         turn_handling=TurnHandlingOptions(
 
             turn_detection=(
-                inference.TurnDetector()
+                inference.TurnDetector(
+                    api_key=lk_key,
+                    api_secret=lk_secret,
+                )
             ),
 
             endpointing={
@@ -2737,33 +2750,18 @@ async def my_agent(
     await session.start(
         agent=ReceptionAgent(),
         room=ctx.room,
-        room_options=room_io.RoomOptions(
-            audio_input=room_io.AudioInputOptions(
-                noise_cancellation=ai_coustics.audio_enhancement(
-                    model=ai_coustics.EnhancerModel.QUAIL_VF_S
-                ),
-            ),
-        ),
+        room_options=room_io.RoomOptions(),
     )
 
     await ctx.connect()
 
-    # Greet caller immediately upon connection
-    await session.generate_reply(
-        agent=ReceptionAgent(),
+    session.generate_reply(
+        instructions="Greet the caller warmly with 'Hello! Thank you for calling CityCare Clinic. How can I help you today?'",
     )
 
 
 # ============================================================
 # MAIN
 # ============================================================
-
 if __name__ == "__main__":
-    cli.run_app(
-        WorkerOptions(
-            entrypoint_fnc=my_agent,
-            prewarm_fnc=prewarm,
-            agent_name="citycare",
-        )
-    )
-
+    cli.run_app(server)

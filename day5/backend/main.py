@@ -13,6 +13,9 @@ from pathlib import Path
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv(Path(__file__).resolve().parents[1] / ".env.local")
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+load_dotenv(Path(__file__).resolve().parents[2] / ".env.local")
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 
 LIVEKIT_URL = os.getenv("LIVEKIT_URL")
 LIVEKIT_API_KEY = os.getenv("LIVEKIT_API_KEY")
@@ -33,7 +36,10 @@ app.add_middleware(
 
 
 @app.get("/token")
-async def get_token(name: str = Query(default="Guest", min_length=1, max_length=50)):
+async def get_token(
+    room: str = Query(default="citycare-clinic", min_length=1, max_length=100),
+    name: str = Query(default="Guest", min_length=1, max_length=50),
+):
     if not LIVEKIT_URL or not LIVEKIT_API_KEY or not LIVEKIT_API_SECRET:
         raise HTTPException(
             status_code=500,
@@ -47,7 +53,7 @@ async def get_token(name: str = Query(default="Guest", min_length=1, max_length=
         .with_grants(
             api.VideoGrants(
                 room_join=True,
-                room="citycare-clinic",
+                room=room.strip(),
             )
         )
         .with_room_config(
@@ -59,12 +65,16 @@ async def get_token(name: str = Query(default="Guest", min_length=1, max_length=
         )
     )
 
+    token_jwt = token.to_jwt()
     return {
         "serverUrl": LIVEKIT_URL,
+        "url": LIVEKIT_URL,
         "participantName": name.strip(),
-        "roomName": "citycare-clinic",
-        "participantToken": token.to_jwt(),
+        "roomName": room.strip(),
+        "participantToken": token_jwt,
+        "token": token_jwt,
     }
+
 
 # ============================================================
 # CLINIC CONFIGURATION

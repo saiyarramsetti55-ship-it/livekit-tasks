@@ -194,3 +194,14 @@ time,tool,ms
 16:56:28,book_appointment,0
 16:56:28,find_appointments,0
 16:56:28,cancel_appointment,0
+13:02:12,get_available_slots,0
+13:02:12,book_appointment,4
+13:02:12,find_appointments,0
+13:02:12,cancel_appointment,0
+13:02:12,get_bill,1
+13:02:12,get_available_slots,0
+13:02:13,get_available_slots,504
+13:02:13,search_policies,1
+13:02:13,book_appointment,0
+13:02:13,find_appointments,1
+13:02:13,cancel_appointment,0

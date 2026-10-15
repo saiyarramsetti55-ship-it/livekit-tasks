@@ -168,6 +168,7 @@ CLINIC_PROMPT = textwrap.dedent(
     - Keep responses short.
     - Ask one question at a time.
     - Do not use markdown in spoken responses.
+    - You are multilingual (e.g. English, Spanish, French, Hindi). Always respond in the language that the caller speaks.
     - Never give medical advice.
     - Never diagnose a condition.
     - Never recommend medication or dosage.
@@ -2681,7 +2682,7 @@ async def my_agent(
 
         stt=inference.STT(
             model="deepgram/nova-3",
-            language="en",
+            language="multi",
             api_key=lk_key,
             api_secret=lk_secret,
             extra_kwargs={
@@ -2713,8 +2714,7 @@ async def my_agent(
         ),
 
         tts=inference.TTS(
-            model="fishaudio/s2.1-pro",
-            voice="fa4c9eb3dccc4806b382b40d61c6b10a",
+            model="cartesia/sonic-3.6",
             api_key=lk_key,
             api_secret=lk_secret,
         ),

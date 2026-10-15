@@ -293,3 +293,16 @@ time,tool,ms
 13:06:24,book_appointment,0
 13:06:24,find_appointments,1
 13:06:24,cancel_appointment,0
+13:28:40,get_available_slots,0
+13:28:40,book_appointment,0
+13:28:40,find_appointments,0
+13:28:40,cancel_appointment,0
+13:28:40,get_bill,1
+13:28:40,get_available_slots,1
+13:28:41,get_available_slots,508
+13:28:41,search_policies,2
+13:28:41,get_prescriptions,0
+13:28:41,request_prescription_refill,0
+13:28:42,book_appointment,0
+13:28:42,find_appointments,0
+13:28:42,cancel_appointment,0

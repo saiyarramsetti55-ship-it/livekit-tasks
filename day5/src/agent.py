@@ -63,8 +63,10 @@ logger = logging.getLogger("citycare-agent")
 def build_llm() -> FallbackAdapter:
     """Build high-performance LLM adapter with primary and fallback providers."""
     key = os.getenv("GROQ_API_KEY")
-    primary = GroqLLM(model="llama-3.3-70b-versatile", api_key=key)
-    fallback = GroqLLM(model="llama-3.1-8b-instant", api_key=key)
+    primary_model = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
+    fallback_model = os.getenv("GROQ_FALLBACK_MODEL", "openai/gpt-oss-120b")
+    primary = GroqLLM(model=primary_model, api_key=key)
+    fallback = GroqLLM(model=fallback_model, api_key=key)
     return FallbackAdapter(
         llm=[primary, fallback],
         attempt_timeout=6.0,
@@ -2678,7 +2680,7 @@ async def my_agent(
         llm=build_llm(),
 
         stt=inference.STT(
-            model="universal-streaming",
+            model="deepgram/nova-3",
             language="en",
             api_key=lk_key,
             api_secret=lk_secret,
@@ -2711,7 +2713,7 @@ async def my_agent(
         ),
 
         tts=inference.TTS(
-            model="sonic-3",
+            model="fishaudio/s2.1-pro",
             voice="fa4c9eb3dccc4806b382b40d61c6b10a",
             api_key=lk_key,
             api_secret=lk_secret,
@@ -2790,16 +2792,10 @@ async def my_agent(
     # --------------------------------------------------------
        
     await session.start(
-    agent=ReceptionAgent(),
-    room=ctx.room,
-    room_options=room_io.RoomOptions(
-        audio_input=room_io.AudioInputOptions(
-            noise_cancellation=ai_coustics.audio_enhancement(
-                model=ai_coustics.EnhancerModel.QUAIL_L
-            ),
-        ),
-    ),
-)
+        agent=ReceptionAgent(),
+        room=ctx.room,
+        room_options=room_io.RoomOptions(),
+    )
     await ctx.connect()
 
     session.generate_reply(

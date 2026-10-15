@@ -2592,7 +2592,20 @@ def redact_report_pii(data: Any) -> Any:
 # SERVER
 # ============================================================
 
-server = AgentServer()
+def prewarm(proc: JobProcess):
+    """
+    Prewarm step: Build RAG index and pre-initialize models
+    at worker startup to eliminate first-call cold start latency.
+    """
+    logger.info("Prewarming CityCare worker process...")
+    try:
+        rag.build_index()
+        proc.userdata["rag_ready"] = True
+    except Exception as exc:
+        logger.warning(f"Prewarm index notice: {exc}")
+
+
+server = AgentServer(setup_fnc=prewarm)
 
 
 async def on_session_end(ctx: JobContext) -> None:
@@ -2610,19 +2623,6 @@ async def on_session_end(ctx: JobContext) -> None:
         logger.info(f"Saved PII-redacted session report to {report_file}")
     except Exception as exc:
         logger.error(f"Failed to save session report: {exc}")
-
-
-def prewarm(proc: JobProcess):
-    """
-    Prewarm step: Build RAG index and pre-initialize models
-    at worker startup to eliminate first-call cold start latency.
-    """
-    logger.info("Prewarming CityCare worker process...")
-    try:
-        rag.build_index()
-        proc.userdata["rag_ready"] = True
-    except Exception as exc:
-        logger.warning(f"Prewarm index notice: {exc}")
 
 @server.rtc_session(
     agent_name="citycare",
@@ -2786,12 +2786,12 @@ async def my_agent(
     # START RECEPTION
     # --------------------------------------------------------
        
-    await ctx.connect()
     await session.start(
         agent=ReceptionAgent(),
         room=ctx.room,
         room_options=room_io.RoomOptions(),
     )
+    await ctx.connect()
 
 
 # ============================================================

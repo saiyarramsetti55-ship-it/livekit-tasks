@@ -2678,7 +2678,7 @@ async def my_agent(
         llm=build_llm(),
 
         stt=inference.STT(
-            model="deepgram/nova-3",
+            model="universal-streaming",
             language="en",
             api_key=lk_key,
             api_secret=lk_secret,
@@ -2711,7 +2711,7 @@ async def my_agent(
         ),
 
         tts=inference.TTS(
-            model="fishaudio/s2.1-pro",
+            model="sonic-3",
             voice="fa4c9eb3dccc4806b382b40d61c6b10a",
             api_key=lk_key,
             api_secret=lk_secret,
@@ -2788,13 +2788,18 @@ async def my_agent(
     # --------------------------------------------------------
     # START RECEPTION
     # --------------------------------------------------------
-
+       
     await session.start(
-        agent=ReceptionAgent(),
-        room=ctx.room,
-        room_options=room_io.RoomOptions(),
-    )
-
+    agent=ReceptionAgent(),
+    room=ctx.room,
+    room_options=room_io.RoomOptions(
+        audio_input=room_io.AudioInputOptions(
+            noise_cancellation=ai_coustics.audio_enhancement(
+                model=ai_coustics.EnhancerModel.QUAIL_L
+            ),
+        ),
+    ),
+)
     await ctx.connect()
 
     session.generate_reply(

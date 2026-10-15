@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "LiveKit Agent (Dev Mode)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/day5/src/agent.py",
+            "args": ["dev"],
+            "cwd": "${workspaceFolder}/day5",
+            "envFile": "${workspaceFolder}/day5/.env.local",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "LiveKit Agent (Interactive Console)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/day5/src/agent.py",
+            "args": ["console"],
+            "cwd": "${workspaceFolder}/day5",
+            "envFile": "${workspaceFolder}/day5/.env.local",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "FastAPI Backend Server",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": ["backend.main:app", "--port", "8000", "--reload"],
+            "cwd": "${workspaceFolder}/day5",
+            "envFile": "${workspaceFolder}/day5/.env.local",
+            "console": "integratedTerminal"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Run Full System (Agent + Backend)",
+            "configurations": [
+                "FastAPI Backend Server",
+                "LiveKit Agent (Dev Mode)"
+            ],
+            "stopAll": true
+        }
+    ]
+}

@@ -10,5 +10,4 @@ node_modules/
 dist/
 build/
 *.log
-.vscode/
 *.code-workspace

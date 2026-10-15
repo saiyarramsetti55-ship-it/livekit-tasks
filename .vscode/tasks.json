@@ -1,0 +1,57 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "LiveKit: Run Agent (Dev)",
+            "type": "shell",
+            "command": "lk agent dev",
+            "options": {
+                "cwd": "${workspaceFolder}/day5"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "LiveKit: Run Agent (Console)",
+            "type": "shell",
+            "command": "lk agent console",
+            "options": {
+                "cwd": "${workspaceFolder}/day5"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Backend: Run FastAPI Server",
+            "type": "shell",
+            "command": "uv run uvicorn backend.main:app --port 8000 --reload",
+            "options": {
+                "cwd": "${workspaceFolder}/day5"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Frontend: Run Web Client",
+            "type": "shell",
+            "command": "npm run dev",
+            "options": {
+                "cwd": "${workspaceFolder}/day5/frontend/frontend"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}

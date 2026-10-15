@@ -2705,7 +2705,8 @@ async def my_agent(
         ),
 
         tts=inference.TTS(
-            model="cartesia/sonic-3.6",
+            model="fishaudio/s2.1-pro-free",
+            voice="fa4c9eb3dccc4806b382b40d61c6b10a",
             api_key=lk_key,
             api_secret=lk_secret,
         ),

@@ -2700,7 +2700,7 @@ async def my_agent(
             ],
 
             keyterm_detection={
-                "enabled": True
+                "enabled": False
             },
         ),
 
@@ -2722,20 +2722,23 @@ async def my_agent(
 
             endpointing={
                 "mode": "fixed",
-                "min_delay": 0.40,
-                "max_delay": 1.60,
+                "min_delay": 0.50,
+                "max_delay": 1.50,
             },
 
             interruption={
-                "mode": "adaptive"
+                "mode": "adaptive",
+                "min_duration": 0.5,
+                "min_words": 1,
+                "resume_false_interruption": True,
             },
 
             preemptive_generation={
-                "enabled": True
+                "enabled": False
             },
         ),
 
-        expressive=True,
+        expressive=False,
     )
 
     # --------------------------------------------------------

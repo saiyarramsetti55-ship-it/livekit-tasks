@@ -60,18 +60,6 @@ if hasattr(sys.stderr, "reconfigure"):
 logger = logging.getLogger("citycare-agent")
 
 
-def build_llm() -> FallbackAdapter:
-    """Build high-performance LLM adapter with primary and fallback providers."""
-    key = os.getenv("GROQ_API_KEY")
-    primary_model = os.getenv("GROQ_MODEL", "openai/gpt-oss-20b")
-    fallback_model = os.getenv("GROQ_FALLBACK_MODEL", "openai/gpt-oss-120b")
-    primary = GroqLLM(model=primary_model, api_key=key)
-    fallback = GroqLLM(model=fallback_model, api_key=key)
-    return FallbackAdapter(
-        llm=[primary, fallback],
-        attempt_timeout=6.0,
-        max_retry_per_llm=1,
-    )
 
 
 
@@ -332,21 +320,24 @@ def build_llm():
 
         return langchain.LLMAdapter(build_graph(CLINIC_PROMPT))
 
-    primary = GroqLLM(
-        model=GROQ_MODEL,
-        temperature=0,
-        parallel_tool_calls=False,
-        max_retries=2,
+    lk_key = os.getenv("LIVEKIT_API_KEY")
+    lk_secret = os.getenv("LIVEKIT_API_SECRET")
+    groq_key = os.getenv("GROQ_API_KEY")
+
+    primary = inference.LLM(
+        model="google/gemini-2.5-flash",
+        api_key=lk_key,
+        api_secret=lk_secret,
     )
     fallback = GroqLLM(
-        model=GROQ_MODEL,
-        temperature=0.1,
+        model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
+        api_key=groq_key,
+        temperature=0,
         parallel_tool_calls=False,
-        max_retries=2,
     )
     return FallbackAdapter(
         llm=[primary, fallback],
-        attempt_timeout=8.0,
+        attempt_timeout=6.0,
         max_retry_per_llm=1,
     )
 
@@ -2791,15 +2782,11 @@ async def my_agent(
     # START RECEPTION
     # --------------------------------------------------------
        
+    await ctx.connect()
     await session.start(
         agent=ReceptionAgent(),
         room=ctx.room,
         room_options=room_io.RoomOptions(),
-    )
-    await ctx.connect()
-
-    session.generate_reply(
-        instructions="Greet the caller warmly with 'Hello! Thank you for calling CityCare Clinic. How can I help you today?'",
     )
 
 
